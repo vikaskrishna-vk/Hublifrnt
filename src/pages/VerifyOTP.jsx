@@ -32,7 +32,7 @@ const finalOtp = otp.join("");
 try{
 
 const res = await axios.post(
-"http://localhost:5001/api/auth/verify-otp",
+"https://hublibck.onrender.com/api/auth/verify-otp",
 { email, otp: finalOtp }
 );
 

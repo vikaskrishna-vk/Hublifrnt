@@ -12,7 +12,7 @@ const createAuction = async()=>{
 try{
 
 await axios.post(
-"http://localhost:5001/api/auction/create",
+"https://hublibck.onrender.com/api/auction/create",
 {
 cropName,
 quantity,

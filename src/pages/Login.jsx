@@ -100,7 +100,7 @@ const Login = () => {
     setLoading(true);
     setError("");
     try {
-      const res  = await axios.post("http://localhost:5001/api/auth/login", { email, password });
+      const res  = await axios.post("https://hublibck.onrender.com/api/auth/login", { email, password });
       const data = res.data;
       localStorage.setItem("token", data.token);
       const roleRoutes = { farmer: "/farmer", buyer: "/buyer", dealer: "/dealer", admin: "/admin" };

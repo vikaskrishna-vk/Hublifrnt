@@ -248,7 +248,7 @@ export default function LandingPage() {
   const fetchFertilizers = async () => {
     setLoadingFertilizers(true);
     try {
-      const res = await axios.get("http://localhost:5001/api/products");
+      const res = await axios.get("https://hublibck.onrender.com/api/products");
       setFertilizers(res.data.filter(p => p.category === "Fertilizers"));
     } catch { console.warn("Error fetching fertilizers"); }
     finally { setLoadingFertilizers(false); }
@@ -270,7 +270,7 @@ export default function LandingPage() {
     try {
       const formData = new FormData();
       formData.append("image", imageFile);
-      const res = await axios.post("http://localhost:5001/api/detect-disease", formData, {
+      const res = await axios.post("https://hublibck.onrender.com/api/detect-disease", formData, {
         headers: { "Content-Type": "multipart/form-data" }
       });
       setResult(res.data);

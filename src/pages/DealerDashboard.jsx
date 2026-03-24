@@ -3,8 +3,8 @@ import { useState, useEffect, useCallback, useRef } from "react";
 /* ═══════════════════════════════════════════════════════════════
    CONFIG  —  change BASE_URL to your backend
 ═══════════════════════════════════════════════════════════════ */
-const BASE_URL = "http://localhost:5001/api";
-
+const BASE_URL = "https://hublibck.onrender.com/api";
+  
 /* ═══════════════════════════════════════════════════════════════
    CONSTANTS
 ═══════════════════════════════════════════════════════════════ */

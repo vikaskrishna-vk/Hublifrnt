@@ -7,7 +7,7 @@ const [items,setItems] = useState([]);
 
 useEffect(()=>{
 
-axios.get("http://localhost:5001/api/fertilizers")
+axios.get("https://hublibck.onrender.com/api/fertilizers")
 .then(res=>setItems(res.data))
 
 },[])

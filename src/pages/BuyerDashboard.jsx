@@ -251,9 +251,9 @@ const BuyerDashboard = () => {
     setLoading(true);
     try {
       const [cropsRes, auctionRes, ordersRes] = await Promise.all([
-        axios.get("http://localhost:5001/api/crops"),
-        axios.get("http://localhost:5001/api/auction"),
-        axios.get("http://localhost:5001/api/orders"),
+        axios.get("https://hublibck.onrender.com/api/crops"),
+        axios.get("https://hublibck.onrender.com/api/auction"),
+        axios.get("https://hublibck.onrender.com/api/orders"),
       ]);
       setCrops(cropsRes.data);
       setAuctions(auctionRes.data);
