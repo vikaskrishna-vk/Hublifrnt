@@ -149,7 +149,7 @@ const Register = () => {
     setLoading(true);
     setError("");
     try {
-      await axios.post("https://hublibck.onrender.com/api/auth/register", { name, email, password, role });
+      await axios.post(`${API}/api/auth/register`, { name, email, password, role });
       navigate("/verify-otp", { state: { email } });
     } catch (err) {
       setError(err.response?.data?.message || "Registration failed. Please try again.");

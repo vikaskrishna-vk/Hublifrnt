@@ -12,7 +12,7 @@ fetchPrices()
 const fetchPrices = async()=>{
 
 const res = await axios.get(
-"https://hublibck.onrender.com/api/auction/market-price"
+`${API}/api/auction/market-price`
 )
 
 setPrices(res.data)

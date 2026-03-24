@@ -203,7 +203,7 @@ const AuctionPage = () => {
 
   const fetchAuctions = async () => {
     try {
-      const res = await axios.get("http://localhost:5001/api/auction");
+      const res = await axios.get(`${API}/api/auction`);
       setAuctions(res.data);
     } catch (err) { console.log("Error fetching auctions"); }
   };
@@ -213,7 +213,7 @@ const AuctionPage = () => {
     setHighestBid(auction.highestBid);
     setHighestBidder(auction.highestBidder);
     try {
-      const res = await axios.get(`http://localhost:5001/api/auction/bids/${auction._id}`);
+      const res = await axios.get(`${API}/api/auction/bids/${auction._id}`);
       setLiveBids(res.data);
     } catch (err) { console.log("Error fetching bids"); }
     setCandleData([{ x: new Date(), o: auction.basePrice, h: auction.basePrice, l: auction.basePrice, c: auction.basePrice }]);
@@ -223,7 +223,7 @@ const AuctionPage = () => {
     const amount = Number(bidAmount);
     if (!amount) return;
     try {
-      const res = await axios.post(`http://localhost:5001/api/auction/bid/${selectedAuction._id}`, {
+      const res = await axios.post(`${API}/api/auction/bid/${selectedAuction._id}`, {
         bid: amount, bidder: user?.name || "Buyer"
       });
       const bidData = {

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://hublibck.onrender.com/api/auction",
+  baseURL: `${API}/api/auction`,
 });
 
 // get all auctions
