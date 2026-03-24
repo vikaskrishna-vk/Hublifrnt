@@ -139,6 +139,17 @@ const Field = ({ label, children }) => (
   </div>
 )
 
+/* ─── PLACEHOLDER PAGE ───────────────────────────────────────── */
+const PlaceholderPage = ({ title, icon, color="#00ff88" }) => (
+  <div style={{ display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", minHeight:"60vh", textAlign:"center" }}>
+    <div style={{ width:80, height:80, borderRadius:20, background:`rgba(0,255,136,0.08)`, border:`1px solid rgba(0,255,136,0.2)`, display:"flex", alignItems:"center", justifyContent:"center", color, marginBottom:24, animation:"float 4s ease-in-out infinite" }}>
+      {icon}
+    </div>
+    <h2 style={{ fontSize:24, fontWeight:800, marginBottom:8 }}>{title}</h2>
+    <p style={{ color:"var(--text-muted)", fontSize:15 }}>Coming soon — this feature is under development</p>
+  </div>
+)
+
 /* ═══════════════════════════════════════════════════════════════ */
 export default function FarmerDashboard() {
   const [page, setPage] = useState("dashboard")
@@ -221,7 +232,7 @@ export default function FarmerDashboard() {
   const closedCount = auctions.filter(a => new Date(a.endTime) < new Date()).length
 
   /* ── SIDEBAR ── */
-  const Sidebar = () => (
+  const renderSidebar = () => (
     <div style={{
       width:230, flexShrink:0, background:"var(--bg-card)",
       borderRight:"1px solid rgba(0,255,136,0.1)",
@@ -271,7 +282,7 @@ export default function FarmerDashboard() {
   )
 
   /* ── PAGE: DASHBOARD ── */
-  const DashboardPage = () => (
+  const renderDashboardPage = () => (
     <div>
       <Reveal>
         <div style={{ marginBottom:36 }}>
@@ -345,7 +356,7 @@ export default function FarmerDashboard() {
   )
 
   /* ── PAGE: CREATE AUCTION ── */
-  const CreateAuctionPage = () => (
+  const renderCreateAuctionPage = () => (
     <div style={{ maxWidth:580 }}>
       <Reveal>
         <div style={{ marginBottom:32 }}>
@@ -412,7 +423,7 @@ export default function FarmerDashboard() {
   )
 
   /* ── PAGE: LISTINGS ── */
-  const ListingsPage = () => (
+  const renderListingsPage = () => (
     <div>
       <Reveal>
         <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-end", marginBottom:28 }}>
@@ -464,7 +475,7 @@ export default function FarmerDashboard() {
   )
 
   /* ── PAGE: FERTILIZERS ── */
-  const FertilizersPage = () => (
+  const renderFertilizersPage = () => (
     <div>
       <Reveal>
         <div style={{ marginBottom:32 }}>
@@ -508,32 +519,21 @@ export default function FarmerDashboard() {
     </div>
   )
 
-  /* ── PAGE: PLACEHOLDER ── */
-  const PlaceholderPage = ({ title, icon, color="#00ff88" }) => (
-    <div style={{ display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", minHeight:"60vh", textAlign:"center" }}>
-      <div style={{ width:80, height:80, borderRadius:20, background:`rgba(0,255,136,0.08)`, border:`1px solid rgba(0,255,136,0.2)`, display:"flex", alignItems:"center", justifyContent:"center", color, marginBottom:24, animation:"float 4s ease-in-out infinite" }}>
-        {icon}
-      </div>
-      <h2 style={{ fontSize:24, fontWeight:800, marginBottom:8 }}>{title}</h2>
-      <p style={{ color:"var(--text-muted)", fontSize:15 }}>Coming soon — this feature is under development</p>
-    </div>
-  )
-
   /* ── RENDER ── */
   return (
     <div style={{ display:"flex", minHeight:"100vh", background:"var(--bg-void)" }}>
       <Styles />
       <GridBg />
-      <Sidebar />
+      {renderSidebar()}
 
       {/* MAIN */}
       <div style={{ flex:1, padding:"36px 32px", position:"relative", zIndex:2, overflowY:"auto" }}>
         <AnimatePresence mode="wait">
           <motion.div key={page} initial={{opacity:0,y:16}} animate={{opacity:1,y:0}} exit={{opacity:0,y:-10}} transition={{duration:0.35, ease:[0.22,1,0.36,1]}}>
-            {page==="dashboard"     && <DashboardPage />}
-            {page==="createAuction" && <CreateAuctionPage />}
-            {page==="listItems"     && <ListingsPage />}
-            {page==="fertilizers"   && <FertilizersPage />}
+            {page==="dashboard"     && renderDashboardPage()}
+            {page==="createAuction" && renderCreateAuctionPage()}
+            {page==="listItems"     && renderListingsPage()}
+            {page==="fertilizers"   && renderFertilizersPage()}
             {page==="schemes"       && <PlaceholderPage title="Government Schemes" icon={<Leaf size={32}/>} color="var(--blue)"/>}
             {page==="soil"          && <PlaceholderPage title="Soil Analyzer"      icon={<Sprout size={32}/>}/>}
             {page==="chat"          && <PlaceholderPage title="Farmer Chat"        icon={<MessageCircle size={32}/>} color="var(--purple)"/>}
