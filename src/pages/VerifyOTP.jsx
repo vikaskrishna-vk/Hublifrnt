@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import axios from "axios";
+import API from "../services/api.js"
 
 const VerifyOTP = () => {
 
@@ -24,7 +24,7 @@ document.getElementById(`otp-${index+1}`).focus();
 
 };
 
-const API = import.meta.env.VITE_API_URL;
+
 
 
 const handleSubmit = async (e)=>{

@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import API from "../services/api.js"
 import { motion, useScroll, useTransform, useInView, AnimatePresence } from "framer-motion";
 import axios from "axios";
 import {

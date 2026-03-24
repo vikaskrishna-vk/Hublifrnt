@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+
 import { motion, AnimatePresence } from "framer-motion";
+import API from "../services/api.js"
 import {
   Wheat, Gavel, ShoppingCart, TrendingUp, Sprout,
   Bell, Search, ChevronRight, Package, Zap,
@@ -247,16 +248,16 @@ const BuyerDashboard = () => {
 
   useEffect(() => { fetchData(); }, []);
 
-  const API = import.meta.env.VITE_API_URL;
+  
 
 
   const fetchData = async () => {
     setLoading(true);
     try {
       const [cropsRes, auctionRes, ordersRes] = await Promise.all([
-        axios.get(`${API}/api/crops`),
-        axios.get(`${API}/api/auction`),
-        axios.get(`${API}/api/orders`),
+        API.get("/api/crops"),
+        API.get("/api/auction"),
+        API.get("/api/orders"),
       ]);
       setCrops(cropsRes.data);
       setAuctions(auctionRes.data);

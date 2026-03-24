@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import API from "../services/api.js";
 
 const MarketPrice = () => {
 
@@ -9,14 +9,12 @@ useEffect(()=>{
 fetchPrices()
 },[])
 
-const API = import.meta.env.VITE_API_URL;
+
 
 
 const fetchPrices = async()=>{
 
-const res = await axios.get(
-`${API}/api/auction/market-price`
-)
+const res = await API.get("/api/auction/market-price")
 
 setPrices(res.data)
 

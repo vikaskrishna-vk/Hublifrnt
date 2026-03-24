@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: `${API}/api/auction`,
+  baseURL: `${import.meta.env.VITE_API_URL}/api/auction`,
 });
 
 // get all auctions

@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import axios from "axios";
+
+import API from "../services/api.js"
 import { Sprout, Mail, Lock, ArrowRight, Eye, EyeOff, Leaf, TrendingUp, Shield } from "lucide-react";
 
 /* ─── STYLES ─────────────────────────────────────────────────── */
@@ -95,7 +96,6 @@ const Login = () => {
   const [error,       setError]       = useState("");
   const navigate = useNavigate();
 
-const API = import.meta.env.VITE_API_URL;
 
 
   const handleSubmit = async (e) => {
@@ -103,7 +103,7 @@ const API = import.meta.env.VITE_API_URL;
     setLoading(true);
     setError("");
     try {
-      const res  = await axios.post(`${API}/api/auth/login`, { email, password });
+      const res  = await API.post("/api/auth/login", { email, password });
       const data = res.data;
       localStorage.setItem("token", data.token);
       const roleRoutes = { farmer: "/farmer", buyer: "/buyer", dealer: "/dealer", admin: "/admin" };

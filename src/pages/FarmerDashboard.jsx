@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import axios from "axios"
+
+import API from "../services/api.js";
 import {
   LayoutDashboard, PlusCircle, List, Sprout,
   FlaskConical, Leaf, MessageCircle, Gavel,
@@ -181,7 +182,7 @@ export default function FarmerDashboard() {
   const [orderSuccess,    setOrderSuccess]    = useState(false)
 
 
-  const API = import.meta.env.VITE_API_URL;
+  
 
 
   useEffect(() => { fetchAuctions() }, [])
@@ -189,14 +190,14 @@ export default function FarmerDashboard() {
 
   const fetchAuctions = async () => {
     setLoadingAuctions(true)
-    try { const r = await axios.get(`${API}/api/auction`); setAuctions(r.data) }
+    try { const r = await API.get("/api/auction"); setAuctions(r.data) }
     catch { console.warn("Error fetching auctions") }
     finally { setLoadingAuctions(false) }
   }
 
   const fetchFertilizers = async () => {
     setLoadingFerts(true)
-    try { const r = await axios.get(`${API}/api/products`); setFertilizers(r.data) }
+    try { const r = await API.get("/api/products"); setFertilizers(r.data) }
     catch { console.warn("Error fetching fertilizers") }
     finally { setLoadingFerts(false) }
   }
@@ -204,7 +205,7 @@ export default function FarmerDashboard() {
   const createAuction = async () => {
     setCreating(true); setCreateMsg(null)
     try {
-      await axios.post(`${API}/api/auction/create`, { cropName, quantity, basePrice, farmerName, farmerPhone, startTime, endTime })
+      await API.post("/api/auction/create", { cropName, quantity, basePrice, farmerName, farmerPhone, startTime, endTime })
       setCreateMsg({ type:"success", text:"Auction created successfully!" })
       fetchAuctions()
     } catch { setCreateMsg({ type:"error", text:"Failed to create auction. Please try again." }) }
@@ -215,17 +216,17 @@ export default function FarmerDashboard() {
     setOrdering(true)
     try {
       if (paymentMethod === "UPI") {
-        const payment = await axios.post(`${API}/api/orders/create-payment`, { amount: selectedProduct.price })
+        const payment = await API.post("/api/orders/create-payment", { amount: selectedProduct.price })
         const options = {
           key: "YOUR_RAZORPAY_KEY", amount: payment.data.amount, order_id: payment.data.id,
           handler: async () => {
-            await axios.post(`${API}/api/orders/create`, { productId: selectedProduct._id, phone, location, paymentMethod: "UPI" })
+            await API.post("/api/orders/create", { productId: selectedProduct._id, phone, location, paymentMethod: "UPI" })
             setOrderSuccess(true)
           }
         }
         new window.Razorpay(options).open()
       } else {
-        await axios.post(`${API}/api/orders/create`, { productId: selectedProduct._id, phone, location, paymentMethod: "COD" })
+        await API.post("/api/orders/create", { productId: selectedProduct._id, phone, location, paymentMethod: "COD" })
         setOrderSuccess(true)
       }
     } catch { console.warn("Order failed") }

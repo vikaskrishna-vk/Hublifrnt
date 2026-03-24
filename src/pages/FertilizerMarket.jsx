@@ -1,15 +1,15 @@
 import { useEffect,useState } from "react";
-import axios from "axios";
+
+import API from "../services/api.js"
 
 function FertilizerMarket(){
 
 const [items,setItems] = useState([]);
-const API = import.meta.env.VITE_API_URL;
 
 
 useEffect(()=>{
 
-axios.get(`${API}/api/fertilizers`)
+API.get("/api/fertilizers")
 .then(res=>setItems(res.data))
 
 },[])

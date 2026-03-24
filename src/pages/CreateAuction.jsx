@@ -1,5 +1,6 @@
 import { useState } from "react";
-import axios from "axios";
+
+import API from "../services/api.js";
 
 const CreateAuction = () => {
 
@@ -7,15 +8,13 @@ const [cropName,setCropName] = useState("")
 const [quantity,setQuantity] = useState("")
 const [basePrice,setBasePrice] = useState("")
 
-const API = import.meta.env.VITE_API_URL;
 
 
 const createAuction = async()=>{
 
 try{
 
-await axios.post(
-`${API}/api/auction/create`,
+await API.post("/api/auction/create",
 {
 cropName,
 quantity,

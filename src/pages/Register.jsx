@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import axios from "axios";
+
+import API from "../services/api.js"
 import {
   Sprout, Mail, Lock, User, ArrowRight,
   Wheat, ShoppingCart, Store, Eye, EyeOff, CheckCircle
@@ -144,7 +145,7 @@ const Register = () => {
 
   const strength = getStrength(password);
 
-  const API = import.meta.env.VITE_API_URL;
+  
 
 
   const handleSubmit = async (e) => {
@@ -152,7 +153,7 @@ const Register = () => {
     setLoading(true);
     setError("");
     try {
-      await axios.post(`${API}/api/auth/register`, { name, email, password, role });
+      await API.post("/api/auth/register", { name, email, password, role });
       navigate("/verify-otp", { state: { email } });
     } catch (err) {
       setError(err.response?.data?.message || "Registration failed. Please try again.");

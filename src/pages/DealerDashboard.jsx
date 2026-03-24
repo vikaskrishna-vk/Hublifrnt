@@ -1,11 +1,12 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 
-const API = import.meta.env.VITE_API_URL;
+
+import API from "../services/api.js";
 
 /* ═══════════════════════════════════════════════════════════════
    CONFIG  —  change BASE_URL to your backend
 ═══════════════════════════════════════════════════════════════ */
-const BASE_URL = `${API}/api`;
+const BASE_URL = "https://hublibck.onrender.com/api";
   
 /* ═══════════════════════════════════════════════════════════════
    CONSTANTS
