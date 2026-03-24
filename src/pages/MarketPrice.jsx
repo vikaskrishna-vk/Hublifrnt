@@ -9,6 +9,9 @@ useEffect(()=>{
 fetchPrices()
 },[])
 
+const API = import.meta.env.VITE_API_URL;
+
+
 const fetchPrices = async()=>{
 
 const res = await axios.get(

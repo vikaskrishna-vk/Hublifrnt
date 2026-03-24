@@ -24,6 +24,9 @@ document.getElementById(`otp-${index+1}`).focus();
 
 };
 
+const API = import.meta.env.VITE_API_URL;
+
+
 const handleSubmit = async (e)=>{
 e.preventDefault();
 

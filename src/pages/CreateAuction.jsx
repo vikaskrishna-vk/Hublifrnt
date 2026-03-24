@@ -7,6 +7,9 @@ const [cropName,setCropName] = useState("")
 const [quantity,setQuantity] = useState("")
 const [basePrice,setBasePrice] = useState("")
 
+const API = import.meta.env.VITE_API_URL;
+
+
 const createAuction = async()=>{
 
 try{

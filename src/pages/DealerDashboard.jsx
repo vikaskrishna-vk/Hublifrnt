@@ -1,5 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 
+const API = import.meta.env.VITE_API_URL;
+
 /* ═══════════════════════════════════════════════════════════════
    CONFIG  —  change BASE_URL to your backend
 ═══════════════════════════════════════════════════════════════ */

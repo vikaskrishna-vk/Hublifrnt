@@ -4,6 +4,8 @@ import axios from "axios";
 function FertilizerMarket(){
 
 const [items,setItems] = useState([]);
+const API = import.meta.env.VITE_API_URL;
+
 
 useEffect(()=>{
 

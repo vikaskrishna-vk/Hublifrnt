@@ -180,6 +180,10 @@ export default function FarmerDashboard() {
   const [ordering,        setOrdering]        = useState(false)
   const [orderSuccess,    setOrderSuccess]    = useState(false)
 
+
+  const API = import.meta.env.VITE_API_URL;
+
+
   useEffect(() => { fetchAuctions() }, [])
   useEffect(() => { if (page === "fertilizers") fetchFertilizers() }, [page])
 

@@ -247,6 +247,9 @@ const BuyerDashboard = () => {
 
   useEffect(() => { fetchData(); }, []);
 
+  const API = import.meta.env.VITE_API_URL;
+
+
   const fetchData = async () => {
     setLoading(true);
     try {

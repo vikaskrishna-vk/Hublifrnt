@@ -144,6 +144,9 @@ const Register = () => {
 
   const strength = getStrength(password);
 
+  const API = import.meta.env.VITE_API_URL;
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);

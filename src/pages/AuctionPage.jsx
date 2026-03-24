@@ -9,6 +9,7 @@ import {
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
 
+const API = import.meta.env.VITE_API_URL;
 const socket = io(import.meta.env.VITE_API_URL);
 
 const CSS = `
