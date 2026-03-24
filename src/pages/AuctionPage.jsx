@@ -9,7 +9,7 @@ import {
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
 
-const socket = io("http://localhost:5001");
+const socket = io("https://hublibck.onrender.com");
 
 const CSS = `
 /* ── GLOBAL FULLSCREEN ── */
