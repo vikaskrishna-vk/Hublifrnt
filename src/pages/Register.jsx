@@ -154,7 +154,7 @@ const Register = () => {
     setError("");
     try {
       await API.post("/api/auth/register", { name, email, password, role });
-      navigate("/verify-otp", { state: { email } });
+      navigate("/login", { state: { email } });
     } catch (err) {
       setError(err.response?.data?.message || "Registration failed. Please try again.");
     } finally {
